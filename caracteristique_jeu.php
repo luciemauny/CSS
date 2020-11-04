@@ -185,7 +185,7 @@ if(empty( $_SESSION['pseudo'])) {
     </tr>';}
 
 
-$j=0;
+$j=1;
 while ($data2 = $req->fetch()){
     if ($j%2==0) {
         echo '

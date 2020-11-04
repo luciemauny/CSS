@@ -1,0 +1,48 @@
+<html lang="fr">
+<head>
+    <title>Critique_jeux_plateau</title>
+    <link rel="stylesheet" type="text/css" href="formulaire.css" media="all"/>
+</head>
+<body>
+<div class="jeu">
+
+    <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
+    Rechercher un jeu
+    <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
+</div>
+<div class="texte">
+    Vous pouvez rechercher des jeux par leur nom, leur édition ou bien leur type !
+</div>
+</br>
+<div class="animation1">
+</div>
+<div class="transbox">
+    <form method="post" action="recherche_jeu.php";>
+        <p></br></br>
+            <img src="https://img.icons8.com/android/24/000000/search.png"/></br></br></br>
+            <label>
+                Jeu :</br> <input type="texte" name="nom"/>
+            </label>
+            </br></br>
+            <label>
+                Edition :</br> <input type="texte" name="edition"/>
+            </label>
+            </br></br>
+            <label for="type_jeu">Type de jeu:</br></label>
+            <select id="type_jeu" name="type_jeu">
+                <option value="1">stratégie</option>
+                <option value="2">hasard</option>
+                <option value="3">mémoire</option>
+                <option value="4">parcours</option>
+            </select>
+            </br></br>
+
+            <label>
+                <input type="submit" name="rechercher" value="Rechercher">
+            </label>
+        </p>
+    </form>
+</div>
+
+</body>
+</html>

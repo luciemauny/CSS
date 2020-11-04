@@ -2,6 +2,7 @@
 session_start();
 session_destroy();
 ?>
+
 <html lang="fr">
 <head>
     <title>Critique_jeux_plateau</title>

@@ -174,7 +174,7 @@ $bio=$_POST["bio"];
 
 </style>
 <body>
-<form method="post" action="form_menu.php";>
+<form method="post" action="form_menu.html" ;>
     <div class="jeu">
 
         <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>

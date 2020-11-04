@@ -183,7 +183,7 @@ if(empty($mail)){
             exit();
         }else{
             $_SESSION["id"]=$data['id'];
-            include('form_menu.php');
+            include('form_menu.html');
         }
 }
 
@@ -364,7 +364,7 @@ else if(empty($pseudo)){
     }else{
         $_SESSION["id"]=$data['id'];
 
-        include('form_menu.php');
+        include('form_menu.html');
 
     }
 
