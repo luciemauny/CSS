@@ -16,74 +16,11 @@ ORDER BY jeu.nom_jeu");
 
 ?>
 
-
-
 <html lang="fr">
 <head>
     <title>Critique_jeux_plateau</title>
+    <link rel="stylesheet" type="text/css" href="tableaux.css" media="all"/>
 </head>
-<style>
-
-    body {
-        background-image: url("https://images.pexels.com/photos/1323712/pexels-photo-1323712.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-        border: 2px solid black;
-    }
-
-
-
-    div.jeu{
-        text-align: center;
-        font-size: 40px;
-        font-weight: bold;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        text-decoration: underline rgba(131, 0, 132,10);
-
-    }
-    input[type=submit] {
-        width: 100px;
-        background-color: black;
-        color: white;
-        padding: 14px 20px;
-        margin-left: 45%;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        color: white;
-        font-weight: bold;
-    }
-    box{
-        margin: 40%;
-    }
-
-    input[type=submit]:hover {
-        background-color: rgba(131, 0, 132,10);
-    }
-    table{
-        width:70%;
-        margin-left: 15%;
-    }
-    button{
-        margin-left: 4%;
-        cursor: pointer;
-        width: 80px;
-
-    }
-    button:hover{
-        background-color:rgba(131, 0, 132,10) ;
-        color: white;
-    }
-    td{
-        text-align: center;
-    }
-    tr{
-        height: 50px;
-    }
-
-</style>
 <body>
 <div class="jeu">
     <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>

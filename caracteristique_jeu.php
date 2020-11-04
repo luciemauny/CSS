@@ -217,10 +217,11 @@ while ($data2 = $req->fetch()){
         $requete->execute([$data2["pseudo"], $_SESSION['nom_jeu']]);
         $note_utilisateur = $requete->fetch();
 
-        if (empty($note_utilisateur["note"])) {
+        if (empty($note_utilisateur["note"])) {$n=0;
             echo ' <td>  / </td>';
         } else {
             echo '<td>';
+            $n=1;
             echo $note_utilisateur["note"];
             echo '</td>';
         }
@@ -282,12 +283,12 @@ while ($data2 = $req->fetch()){
         $note_utilisateur = $requete->fetch();
 
                 if (empty($note_utilisateur["note"]))
-        {
+        {$n=0;
             echo' <td> /</td>';
         } else
         {
             echo' <td> ';
-
+            $n=1;
             echo $note_utilisateur["note"]; echo'</td>';
         }
 

@@ -20,6 +20,7 @@ div.animation1 {
     100% {background-color:red; left:0px; top:0px;}
 }
 
+
 body {
     background-image: url("https://images.pexels.com/photos/1323712/pexels-photo-1323712.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
     background-repeat: no-repeat;
@@ -36,6 +37,19 @@ select{
     border: 1px solid #ccc;
     border-radius: 1px;
     box-sizing: border-box;
+}
+input[type=submit] {
+    width: 100px;
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin-left: 45%;
+    margin-top: 5%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
 }
 
 input[type=submit] {
@@ -85,4 +99,32 @@ div.jeu{
 div.texte{
     text-align: center;
     font-size : 20px
+}
+box{
+    margin: 40%;
+}
+
+table{
+    width:70%;
+    margin-left: 15%;
+}
+button{
+    margin-left: 4%;
+    cursor: pointer;
+    width: 80px;
+
+}
+button:hover{
+    background-color: black;
+    color: white;
+}
+td{
+    text-align: center;
+}
+tr{
+    height: 50px;
+}
+
+span{
+    color: gold;
 }
