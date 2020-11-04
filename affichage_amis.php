@@ -101,7 +101,7 @@ session_start();
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
 
-$req = $bdd->prepare("SELECT amis.id_amis  FROM amis WHERE amis.id_utilisateur=?");
+$req = $bdd->prepare("SELECT id_amis  FROM amis WHERE id_utilisateur=?");
 $req->execute([$_SESSION['id']]);
 
 $i=0;
@@ -121,9 +121,15 @@ while ($data = $req->fetch()) {
          echo $datapseudo["pseudo"]; echo'</span>'
             ?> <?php
     }
-    echo'</br></br>';
+    echo'</br>';
     $i++;
+    ?>
+    <form method="post" action="gestion_amis.php">
+        <input type="hidden" name="id_amis" value="<?php echo $data["id_amis"] ?>">
+       <input type="submit" name="supprimer" value="supprimer cet ami">
+    </form>
 
+<?php
 }
 ?>
 
