@@ -24,12 +24,12 @@ $req->execute([$data_type_jeu['id_type_jeu']]);
     Découvrir des jeux
     <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
 </div>
-<table cellspacing="0">
+<table cellspacing="3">
     <tr>
         <th>Nom</th>
         <th>Edition</th>
         <th>Prix</th>
-        <th>Déscriptif</th>
+        <th>Descriptif</th>
         <th>Note moyenne</th>
 
     </tr>

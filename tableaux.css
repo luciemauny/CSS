@@ -47,8 +47,8 @@ button{
 
 }
 button:hover{
-    background-color: black;
-    color: white;
+    background-color: purple;
+    color: black;
 }
 td{
     text-align: center;
