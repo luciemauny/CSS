@@ -3,8 +3,13 @@
     <title>Critique_jeux_plateau</title>
     <link rel="stylesheet" type="text/css" href="formulaire.css" media="all"/>
 </head>
+<style>
+    input[type=submit]:hover {
+        background-color: rgba(131, 0, 132,10);
+    }
+</style>
 <body>
-<div class="jeu">
+<div class="jeu" style="text-decoration: underline rgba(131, 0, 132,10)">
 
     <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
     Rechercher un jeu
@@ -18,7 +23,7 @@
 </div>
 <div class="transbox">
     <form method="post" action="recherche_jeu.php";>
-        <p></br></br>
+        </br></br>
             <img src="https://img.icons8.com/android/24/000000/search.png"/></br></br></br>
             <label>
                 Jeu :</br> <input type="texte" name="nom"/>
@@ -40,8 +45,14 @@
             <label>
                 <input type="submit" name="rechercher" value="Rechercher">
             </label>
-        </p>
     </form>
+    <form method="post" action="page_accueil.php">
+
+        </br></br></br>
+        <input type="submit" name="menu" value="MENU">
+
+    </form>
+
 </div>
 
 </body>
