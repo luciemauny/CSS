@@ -37,29 +37,34 @@
 
         $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
-
+        //recherche les id des amis de l'utilisateur connecté
         $req = $bdd->prepare("SELECT id_amis  FROM amis WHERE id_utilisateur=?");
         $req->execute([$_SESSION['id']]);
 
-        $i=0;
-        while ($data = $req->fetch()) {
-            $reque = $bdd->prepare("SELECT utilisateur.pseudo FROM utilisateur INNER JOIN amis ON utilisateur.id=amis.id_amis
-    WHERE amis.id_amis=?");
+        while ($data = $req->fetch()) { //boucle se termine quand tous amis de l'utilisateur ont été affichés
+
+            //récupère le pseudo de l'ami
+            $reque = $bdd->prepare("SELECT utilisateur.pseudo FROM utilisateur INNER JOIN amis ON
+            utilisateur.id=amis.id_amis WHERE amis.id_amis=?");
             $reque->execute([$data["id_amis"]]);
             $datapseudo=$reque->fetch();
-            $requete = $bdd->prepare("SELECT utilisateur.id FROM utilisateur INNER JOIN amis ON utilisateur.id=amis.id_amis WHERE amis.id_utilisateur=? AND amis.id_amis=?");
+
+            //teste si l'amitié est réciproque
+            $requete = $bdd->prepare("SELECT utilisateur.id FROM utilisateur INNER JOIN amis ON
+            utilisateur.id=amis.id_amis WHERE amis.id_utilisateur=? AND amis.id_amis=?");
             $requete->execute([$data["id_amis"], $_SESSION['id']]);
             $datamis = $requete->fetch();
+
             if (empty($datamis['id'])){
-                ?><?php echo $datapseudo["pseudo"];?>
-                <?php
+                echo $datapseudo["pseudo"]; //affiche pseudo en noir si amitié non réciproque
+
             }else{
                 echo '<span>';
-                echo $datapseudo["pseudo"]; echo'</span>'
-                ?> <?php
+                echo $datapseudo["pseudo"]; echo'</span>'; //affiche pseudo de couleur si amitié réciproque
             }
             echo'</br>';
-            $i++;
+
+            //affichage bouton de suppression d'ami avec passage de variable cachée contenant l'id de l'ami à supprimer
             ?>
             <form method="post" action="gestion_amis.php">
                 <input type="hidden" name="id_amis" value="<?php echo $data["id_amis"] ?>">
