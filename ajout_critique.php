@@ -30,33 +30,33 @@ $req->execute([$note,$data['id_jeu'],$data_utilisateur['id']]);
 </head>
 <body>
 
-    <form method="post" action="page_accueil.php";>
-        <div class="jeu">
+<form method="post" action="page_accueil.php";>
+    <div class="jeu">
 
-            <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
-            Bravo !
-            <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
-        </div>
-        <div class="animation1">
+        <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
+        Bravo !
+        <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
+    </div>
+    <div class="animation1">
 
-        </div>
-        </br>
-        <div class="texte">
-            Votre avis a bien été ajouté ! Cliquez ici pour revenir au menu :
-        </div>
+    </div>
+    </br>
+    <div class="texte">
+        Votre avis a bien été ajouté ! Cliquez ici pour revenir au menu :
+    </div>
 
-        </br> </br>
-        <div class="animation2"></div>
-        <div class="animation4"></div>
-        <div class="animation3"></div>
+    </br> </br>
+    <div class="animation2"></div>
+    <div class="animation4"></div>
+    <div class="animation3"></div>
 
-        <div class="box">
-            <label>
-                <p><input type="submit" name="menu" value="MENU"></p>
-            </label>
-        </div>
+    <div class="box">
+        <label>
+            <p><input type="submit" name="menu" value="MENU"></p>
+        </label>
+    </div>
 
-    </form>
+</form>
 </body>
 </html>
 
