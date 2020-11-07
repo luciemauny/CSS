@@ -5,9 +5,10 @@ $avis=$_POST["avis_critique"];
 $id_critique=$_POST["id_critique"];
 
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
+
+//insert la note de la critique dans la table note_critique
 $req = $bdd->prepare("INSERT INTO note_critique (id_critique,note_critique,id_utilisateur) VALUES (?,?,?)");
 $req->execute([$id_critique,$avis,$_SESSION['id']]);
-
 
 ?>
 
