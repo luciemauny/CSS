@@ -7,12 +7,14 @@ $type_jeu=$_POST["type_jeu"];
 $bio=$_POST["bio"];
 $a=0;
 
-
+if(empty($nom)||empty($prix)||empty($edition)||empty($type_jeu)||empty($bio)){
+    $a=2;
+} else{
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
-$req=$bdd->prepare("SELECT jeu.nom_jeu, jeu.prix, jeu.id_edition, jeu.id_jeu_type_jeu FROM jeu INNER JOIN edition
-    ON jeu.id_edition=edition.id_edition WHERE jeu.nom_jeu=? AND edition.nom_edition=? AND jeu.prix=? AND jeu.id_jeu_type_jeu=?");
-$req->execute([$nom,$edition,$prix,$type_jeu]);
+$req=$bdd->prepare("SELECT jeu.nom_jeu, jeu.id_edition FROM jeu INNER JOIN edition
+    ON jeu.id_edition=edition.id_edition WHERE jeu.nom_jeu=? AND edition.nom_edition=?");
+$req->execute([$nom,$edition]);
 $data = $req->fetch();
 
 if(empty($data)){$a=1;
@@ -48,7 +50,7 @@ if(empty($data)){$a=1;
         $req -> execute ([$nom, $prix, $data_edition['id_edition'], $type_jeu, $bio]);}
 
 
-}else{}
+}else{}}
 
 ?>
 
@@ -58,7 +60,7 @@ if(empty($data)){$a=1;
     <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
 </head>
 <body>
-<form method="post" action="form_menu.html" ;>
+<form method="post" action="page_accueil.php">
     <div class="jeu">
 
         <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
@@ -75,11 +77,12 @@ if(empty($data)){$a=1;
     </br>
     <div class="texte">
 
-        <?php if($a==1){echo'Votre jeu a bien été enregistré ! ';
-        }else{echo'Ce jeu existe déjà ! ';
-        }?>
+        <?php if($a==1){echo'Votre jeu a bien été enregistré ! Cliquez ici pour revenir au menu :';
+        }else if ($a==2){echo'Veuillez remplir tous les champs! Cliquez ici pour revenir au formulaire';}
+        else{ echo'Ce jeu existe déjà ! Cliquez ici pour revenir au menu :';}
+        ?>
 
-        Cliquez ici pour revenir au menu :
+
     </div>
 
     </br> </br>
@@ -88,9 +91,18 @@ if(empty($data)){$a=1;
     <div class="animation3"></div>
 
     <div class="box">
+        <?php if ($a==2){
+            echo'
+        <label>
+            <p><input type="submit" name="ajout_jeu" value="Formulaire"></p>
+        </label>
+        </form>';
+        } else{
+        echo'
         <label>
             <p><input type="submit" name="menu" value="MENU"></p>
         </label>
+        ';}?>
     </div>
 
 </form>
