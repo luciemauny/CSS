@@ -6,11 +6,11 @@ $type_jeu=$_POST["type_jeu"];
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
 
-    $req = $bdd->prepare("SELECT jeu.nom_jeu, edition.nom_edition, type_jeu.nom_type_jeu, jeu.prix FROM jeu INNER JOIN edition 
+$req = $bdd->prepare("SELECT jeu.nom_jeu, edition.nom_edition, type_jeu.nom_type_jeu, jeu.prix FROM jeu INNER JOIN edition 
 ON jeu.id_edition=edition.id_edition INNER JOIN type_jeu ON type_jeu.id_type_jeu=jeu.id_jeu_type_jeu  
 WHERE jeu.nom_jeu LIKE CONCAT('%', ?, '%') OR edition.nom_edition LIKE CONCAT('%', ?, '%') OR type_jeu.id_type_jeu=? 
 ORDER BY jeu.nom_jeu");
-    $req->execute([$nom, $edition, $type_jeu]);
+$req->execute([$nom, $edition, $type_jeu]);
 
 /*
 $req = $bdd->prepare("SELECT jeu.nom_jeu, edition.nom_edition, type_jeu.nom_type_jeu, jeu.prix FROM jeu INNER JOIN edition
@@ -104,10 +104,10 @@ $req->execute([$nom, $edition, $type_jeu]);
 
     </form>
 </table>
-    <form method="post" action="page_accueil.php"
+<form method="post" action="page_accueil.php"
 </br></br><box>Cliquez ici pour revenir au menu ! </box></br></br>
-        <input type="submit" name="menu" value="MENU">
-    </form>
+<input type="submit" name="menu" value="MENU">
+</form>
 
 </body>
 </html>
