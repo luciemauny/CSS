@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//Cette page a pour but de faire le lien entre deux pages php. Pour une grande partie des boutons submit, l'action que souhaite faire l'utilisateur est executée ici.
 if (empty($_POST["inscription"])){
 } else {
     include('form_ajout_utilisateur.html');
