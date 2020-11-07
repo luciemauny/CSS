@@ -8,23 +8,23 @@ $bio=$_POST["bio"];
 $a=0;
 
 
-    $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
+$bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
-    $req=$bdd->prepare("SELECT jeu.nom_jeu, jeu.prix, jeu.id_edition, jeu.id_jeu_type_jeu FROM jeu INNER JOIN edition
+$req=$bdd->prepare("SELECT jeu.nom_jeu, jeu.prix, jeu.id_edition, jeu.id_jeu_type_jeu FROM jeu INNER JOIN edition
     ON jeu.id_edition=edition.id_edition WHERE jeu.nom_jeu=? AND edition.nom_edition=? AND jeu.prix=? AND jeu.id_jeu_type_jeu=?");
-    $req->execute([$nom,$edition,$prix,$type_jeu]);
-    $data = $req->fetch();
+$req->execute([$nom,$edition,$prix,$type_jeu]);
+$data = $req->fetch();
 
-    if(empty($data)){$a=1;
+if(empty($data)){$a=1;
 
     $req = $bdd->prepare("SELECT id_edition FROM edition WHERE nom_edition=?;");
     $req->execute([$edition]);
     $data = $req->fetch();
 
-        if(empty($data['id_edition'])){
-            $req = $bdd->prepare("INSERT INTO edition(nom_edition) VALUES (?);");
-            $req->execute([$edition]);
-        }
+    if(empty($data['id_edition'])){
+        $req = $bdd->prepare("INSERT INTO edition(nom_edition) VALUES (?);");
+        $req->execute([$edition]);
+    }
     $req = $bdd->prepare("SELECT id_edition FROM edition INNER JOIN jeu ON jeu.id_edition=edition.id_edition
     WHERE jeu.nom=?;");
     $req->execute([$nom]);
@@ -48,9 +48,9 @@ $a=0;
         $req -> execute ([$nom, $prix, $data_edition['id_edition'], $type_jeu, $bio]);}
 
 
-    }else{}
+}else{}
 
-        ?>
+?>
 
 <html lang="fr">
 <head>
@@ -64,7 +64,7 @@ $a=0;
         <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
 
         <?php if($a==1){echo'BRAVO !';
-                }else{echo'OOUPS !';
+        }else{echo'OOUPS !';
         } ?>
 
         <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
@@ -76,7 +76,7 @@ $a=0;
     <div class="texte">
 
         <?php if($a==1){echo'Votre jeu a bien été enregistré ! ';
-            }else{echo'Ce jeu existe déjà ! ';
+        }else{echo'Ce jeu existe déjà ! ';
         }?>
 
         Cliquez ici pour revenir au menu :
