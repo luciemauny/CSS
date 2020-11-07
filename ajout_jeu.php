@@ -19,9 +19,9 @@ $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8",
 $req=$bdd->prepare("SELECT jeu.nom_jeu, jeu.id_edition FROM jeu INNER JOIN edition
     ON jeu.id_edition=edition.id_edition WHERE jeu.nom_jeu=? AND edition.nom_edition=?");
 $req->execute([$nom,$edition]);
-$data = $req->fetch();
+$data_existe = $req->fetch();
 
-if(empty($data)){$a=1;
+if(empty($data_existe)){$a=1;
 
     //teste si l'édition entrée par le joueur existe déjà dans la base données
     $req = $bdd->prepare("SELECT id_edition FROM edition WHERE nom_edition=?;");
@@ -35,13 +35,7 @@ if(empty($data)){$a=1;
         $req->execute([$edition]);
     }
 
-    
-    $req = $bdd->prepare("SELECT id_edition FROM edition INNER JOIN jeu ON jeu.id_edition=edition.id_edition
-    WHERE jeu.nom=?;");
-    $req->execute([$nom]);
-    $data_existe = $req->fetch();
-
-
+    //Récupère l'id de l'édition associé au jeu ajouté par l'utilisateur
     $req = $bdd->prepare("SELECT id_edition FROM edition WHERE nom_edition=?;");
     $req->execute([$edition]);
     $data_edition = $req->fetch();
@@ -51,14 +45,9 @@ if(empty($data)){$a=1;
     $req->execute([$_SESSION["pseudo"]]);
     $data_pseudo = $req->fetch();
 
-
-    $req = $bdd->prepare("SELECT id_jeu FROM jeu WHERE jeu.nom_jeu=?;");
-    $req->execute([$nom]);
-    $data_nom = $req->fetch();
-
-    if(empty($data_existe['id_edition'])){
-        $req = $bdd ->prepare ("INSERT INTO jeu(nom_jeu, prix, id_edition, id_jeu_type_jeu, bio) VALUES (?,?,?,?,?);");
-        $req -> execute ([$nom, $prix, $data_edition['id_edition'], $type_jeu, $bio]);}
+   //Insert dans la base de données le jeu et ses caractéristiques 
+   $req = $bdd ->prepare ("INSERT INTO jeu(nom_jeu, prix, id_edition, id_jeu_type_jeu, bio) VALUES (?,?,?,?,?);");
+   $req -> execute ([$nom, $prix, $data_edition['id_edition'], $type_jeu, $bio]);
 
 }
 }
