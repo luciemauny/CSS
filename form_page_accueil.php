@@ -1,4 +1,5 @@
 <?php
+//remet la session à zéro et efface les données contenues dans celle-ci
 session_start();
 session_destroy();
 ?>
