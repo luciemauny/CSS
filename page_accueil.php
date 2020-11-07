@@ -31,7 +31,7 @@ if (empty($_POST["ajout_jeu"])){
 if (empty($_POST["menu"])){
 }else{
     $menu=$_POST['menu'];
-    include('form_menu.html');
+    include('form_menu.php');
     exit();
 }
 
