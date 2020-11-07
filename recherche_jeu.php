@@ -3,9 +3,10 @@ $nom=$_POST["nom"];
 $edition=$_POST["edition"];
 $type_jeu=$_POST["type_jeu"];
 
+//Cette requête sélectionne tous les jeux (et leurs caractéristiques) vérifaint au moins une des données entrées par l'utilisateur dans le formualire d'ajout de jeux.
+//Ces données sont triées par nom de jeux.
+
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
-
-
 $req = $bdd->prepare("SELECT jeu.nom_jeu, edition.nom_edition, type_jeu.nom_type_jeu, jeu.prix FROM jeu INNER JOIN edition 
 ON jeu.id_edition=edition.id_edition INNER JOIN type_jeu ON type_jeu.id_type_jeu=jeu.id_jeu_type_jeu  
 WHERE jeu.nom_jeu LIKE CONCAT('%', ?, '%') OR edition.nom_edition LIKE CONCAT('%', ?, '%') OR type_jeu.id_type_jeu=? 
@@ -36,7 +37,9 @@ $req->execute([$nom, $edition, $type_jeu]);
     <form method="post" action="caracteristique_jeu.php" >
 
         <?php
-        $i=0;
+        //La boucle while permet de parcourir tous les jeux sélectionnés par la requête précédente. Ces jeux et leurs caractéristiques sont insérés dans un tableau
+        $i=0; //Cette variable qui accroit de 1 a chaque nouvel entré dans la boucle while, permet de déterminer en fonction de sa parité 
+               //si la ligne du tableau sera grise ou sans fond en fonction
         while ($data=$req->fetch()){
 
             if ($i%2==0){
@@ -48,6 +51,7 @@ $req->execute([$nom, $edition, $type_jeu]);
                 echo' <td >'; echo $data["nom_type_jeu"];echo '</td>';
 
                 echo' <td >'; echo $data["prix"]; echo'</td>';
+                //Cette requête fait la moyenne arrondie à 1O^-1 des notes que le jeu a réçu de différents utilisateurs
                 $requete = $bdd->prepare("SELECT ROUND(AVG(note.note),1) AS note_moyenne FROM note INNER JOIN jeu 
                     ON jeu.id_jeu=note.id_jeu INNER JOIN edition ON jeu.id_edition=edition.id_edition INNER JOIN type_jeu
                     ON type_jeu.id_type_jeu=jeu.id_jeu_type_jeu WHERE jeu.nom_jeu=?AND edition.nom_edition=? AND type_jeu.nom_type_jeu=?");
