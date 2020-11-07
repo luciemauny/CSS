@@ -32,24 +32,27 @@ if(empty($nom)||empty($prenom)||empty($password)||empty($telephone)||empty($date
     if(empty($datapseudo['id']) && empty($datamail['id'])){
 
         //cas où les identifiants choisis sont uniques : insertion nouvel utilisateur dans la base de données
-        $req = $bdd->prepare("INSERT INTO utilisateur(prenom, nom, date_naissance, adresse_postale, mail, password, telephone, pseudo) VALUES (?,?,?,?,?,?,?,?);");
-        $req->execute([$prenom, $nom, $date_naissance, $adresse_postale, $mail, $password, $telephone, $pseudo]);
+        $req = $bdd->prepare("INSERT INTO utilisateur(prenom, nom, date_naissance, adresse_postale, mail, password, telephone, pseudo, type_jeu) VALUES (?,?,?,?,?,?,?,?,?);");
+        $req->execute([$prenom, $nom, $date_naissance, $adresse_postale, $mail, $password, $telephone, $pseudo, $type_jeu]);
 
         //récupération de l'id de l'utilisateur
         $req = $bdd ->prepare ("SELECT id FROM utilisateur WHERE nom=? AND prenom=? AND password=? AND date_naissance=? AND mail=? AND adresse_postale=?
-    AND telephone=? AND pseudo=?");
-        $req -> execute ([$nom, $prenom, $password, $date_naissance, $mail, $adresse_postale, $telephone, $pseudo]);
+    AND telephone=? AND pseudo=? AND type_jeu=?");
+        $req -> execute ([$nom, $prenom, $password, $date_naissance, $mail, $adresse_postale, $telephone, $pseudo,$type_jeu]);
         $data = $req->fetch();
 
-        //insertion du type de jeu préféré de l'utilisateur
-        $req = $bdd->prepare("INSERT INTO utilisateur_type_jeu(id_utilisateur, id_type_jeu) VALUES (?,?);");
-        $req->execute([$data['id'], $type_jeu]);
+
     }else{if(empty($datamail['id'])){
         $a=2; //si mail existe déjà
     }else{$a=3;//si pseudo existe déjà
     }
     }
 }
+if ($a==0){//si il n'y a aucun problème, renvoie au menu
+    $_SESSION["id"]=$data['id'];
+    $_SESSION["pseudo"]=$pseudo;
+    include('form_menu.php');
+}else{
 ?>
 
 <html lang="fr">
@@ -62,14 +65,13 @@ if(empty($nom)||empty($prenom)||empty($password)||empty($telephone)||empty($date
 <?php if($a!=0){ //redirection vers des pages différentes en fonction des tests effectués ci-dessus ?>
 <form method="post" action="page_accueil.php";>
     <?php }else{ ?>
-    <form method="post" action="form_menu.html">
+    <form method="post" action="form_menu.php">
         <?php }?>
 
         <div class="jeu">
 
             <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
             <?php if($a!=0){echo'OOUPS !';
-            }else{echo'BRAVO !';
             } ?>
             <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
         </div>
@@ -80,10 +82,8 @@ if(empty($nom)||empty($prenom)||empty($password)||empty($telephone)||empty($date
         <div class="texte">
 
             <?php //affichage de messages différents en fonction du cas
-                switch($a){
+            switch($a){
 
-                case 0 : echo'Vous êtes bien inscrit !';
-                    break;
                 case 1 : echo'Veuillez remplir tous les champs !';
                     break;
                 case 2 : echo'Ce pseudo existe déjà !';
@@ -101,13 +101,11 @@ if(empty($nom)||empty($prenom)||empty($password)||empty($telephone)||empty($date
         <div class="animation3"></div>
 
         <div class="box">
-            <?php if($a!=0){ //bouton de retour à la page d'accueil ?>
                 <p><input type="submit" name="inscription" value="Recommencer"></p>
-            <?php }else{ //bouton de redirection vers le menu du compte ?>
-                <p><input type="submit" name="menu" value="MENU"></p>
-            <?php }?>
+
         </div>
 
     </form>
 </body>
 </html>
+<?php }
