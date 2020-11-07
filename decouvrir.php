@@ -1,16 +1,11 @@
 <?php
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
-$req = $bdd->prepare("SELECT utilisateur_type_jeu.id_type_jeu FROM utilisateur_type_jeu INNER JOIN utilisateur 
-ON utilisateur_type_jeu.id_utilisateur=utilisateur.id
-WHERE utilisateur.pseudo =?");
-$req->execute([$_SESSION['pseudo']]);
-$data_type_jeu=$req->fetch();
 
 $req = $bdd->prepare("SELECT jeu.nom_jeu, edition.nom_edition, jeu.prix, jeu.bio FROM jeu INNER JOIN edition 
-ON jeu.id_edition=edition.id_edition INNER JOIN type_jeu ON type_jeu.id_type_jeu=jeu.id_jeu_type_jeu  
-WHERE type_jeu.id_type_jeu=? ORDER BY jeu.nom_jeu, type_jeu.nom_type_jeu, edition.id_edition");
-$req->execute([$data_type_jeu['id_type_jeu']]);
+ON jeu.id_edition=edition.id_edition INNER JOIN utilisateur ON utilisateur.type_jeu=jeu.id_jeu_type_jeu 
+WHERE utilisateur.pseudo=? ORDER BY jeu.nom_jeu, edition.id_edition");
+$req->execute([$_SESSION['pseudo']]);
 ?>
 <html lang="fr">
 <head>
@@ -56,9 +51,9 @@ $req->execute([$data_type_jeu['id_type_jeu']]);
 
                 echo' <td>'; echo $data["bio"]; echo'</td>';
                 $requete = $bdd->prepare("SELECT ROUND(AVG(note.note),1) AS note_moyenne FROM note INNER JOIN jeu 
-                    ON jeu.id_jeu=note.id_jeu INNER JOIN edition ON jeu.id_edition=edition.id_edition INNER JOIN type_jeu
-                    ON type_jeu.id_type_jeu=jeu.id_jeu_type_jeu WHERE jeu.nom_jeu=?AND edition.nom_edition=? AND type_jeu.id_type_jeu=?");
-                $requete->execute([$data["nom_jeu"], $data["nom_edition"], $data_type_jeu['id_type_jeu']]);
+                    ON jeu.id_jeu=note.id_jeu INNER JOIN edition ON jeu.id_edition=edition.id_edition
+                     WHERE jeu.nom_jeu=?AND edition.nom_edition=?");
+                $requete->execute([$data["nom_jeu"], $data["nom_edition"]]);
                 $data_note=$requete->fetch();
                 if (empty($data_note["note_moyenne"])){
                     echo '<td>'; echo '/'; echo'</td>';
@@ -82,9 +77,9 @@ $req->execute([$data_type_jeu['id_type_jeu']]);
                 echo' <td>'; echo $data["bio"]; echo'</td>';
 
                 $requete = $bdd->prepare("SELECT ROUND(AVG(note.note),1) AS note_moyenne FROM note INNER JOIN jeu 
-                    ON jeu.id_jeu=note.id_jeu INNER JOIN edition ON jeu.id_edition=edition.id_edition INNER JOIN type_jeu
-                    ON type_jeu.id_type_jeu=jeu.id_jeu_type_jeu WHERE jeu.nom_jeu=?AND edition.nom_edition=? AND type_jeu.id_type_jeu=?");
-                $requete->execute([$data["nom_jeu"], $data["nom_edition"], $data_type_jeu['id_type_jeu']]);
+                    ON jeu.id_jeu=note.id_jeu INNER JOIN edition ON jeu.id_edition=edition.id_edition 
+                     WHERE jeu.nom_jeu=?AND edition.nom_edition=?");
+                $requete->execute([$data["nom_jeu"], $data["nom_edition"]]);
                 $data_note=$requete->fetch();
                 if (empty($data_note["note_moyenne"])){
                     echo '<td>'; echo '/'; echo'</td>';
