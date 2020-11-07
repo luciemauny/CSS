@@ -1,7 +1,7 @@
 <?php
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
-
+//Sélectionner toutes les caractéristiques de tous les jeux appartenant au type de jeu préféré de l'utilisateur
 $req = $bdd->prepare("SELECT jeu.nom_jeu, edition.nom_edition, jeu.prix, jeu.bio FROM jeu INNER JOIN edition 
 ON jeu.id_edition=edition.id_edition INNER JOIN utilisateur ON utilisateur.type_jeu=jeu.id_jeu_type_jeu 
 WHERE utilisateur.pseudo=? ORDER BY jeu.nom_jeu, edition.id_edition");
@@ -38,7 +38,8 @@ $req->execute([$_SESSION['pseudo']]);
     <form method="post" action="caracteristique_jeu.php" >
 
         <?php
-        $i=0;
+        //While traverse tous les jeux sélectionnés par la requête précédente et met ses caracéristiques dans un tablea
+        $i=0;//Est incrémenté de un a chaque nouvel entré dans la boucle while. Sa parité détermine le fond des lignes du tableau
         while ($data=$req->fetch()){
 
             if ($i%2==0){
@@ -50,6 +51,7 @@ $req->execute([$_SESSION['pseudo']]);
                 echo' <td>'; echo $data["prix"]; echo'</td>';
 
                 echo' <td>'; echo $data["bio"]; echo'</td>';
+                //Fais la moyenne des notes à 1O^-1 des notes que le jeu a reçu par tou les utilisateurs
                 $requete = $bdd->prepare("SELECT ROUND(AVG(note.note),1) AS note_moyenne FROM note INNER JOIN jeu 
                     ON jeu.id_jeu=note.id_jeu INNER JOIN edition ON jeu.id_edition=edition.id_edition
                      WHERE jeu.nom_jeu=?AND edition.nom_edition=?");
