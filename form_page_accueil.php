@@ -49,7 +49,7 @@ session_destroy();
 
         <div class="transbox">
             <p><sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
-            Critique de jeux de plateau
+                Critique de jeux de plateau
                 <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
             </p>
         </div>
