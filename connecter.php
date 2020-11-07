@@ -4,11 +4,14 @@ $identifiant=$_POST["identifiant"];
 $mdp=$_POST["mdp"];
 
 $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
+
+//recherche l'utilisateur correspondant aux identifiants de connexion entrés
 $req = $bdd->prepare("SELECT utilisateur.id, utilisateur.pseudo, utilisateur.mail FROM utilisateur
 WHERE (utilisateur.pseudo=? OR utilisateur.mail=?) AND utilisateur.password=?");
 $req->execute([$identifiant, $identifiant, $mdp]);
 $data=$req->fetch();
 
+//si identifiants entrés ne correspondent à aucun utilisateur de la base
 if(empty($data)){
 
     ?>
@@ -51,8 +54,10 @@ if(empty($data)){
 
     <?php
 }else{
+    //si utilisateur existe dans la base
+    //passage des données de l'utilisateur dans les variables de session
     $_SESSION["id"]=$data['id'];
     $_SESSION["pseudo"]=$data['pseudo'];
-    include('form_menu.php');
+    include('form_menu.php'); //redirection vers le menu du compte utilisateur
 }
 ?>
