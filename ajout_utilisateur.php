@@ -48,7 +48,7 @@ if(empty($nom)||empty($prenom)||empty($password)||empty($telephone)||empty($date
     }
     }
 }
-if ($a==0){//si il n'y a aucun problème, renvoie au menu
+if ($a==0){//s'il n'y a aucun problème, redirection vers menu
     $_SESSION["id"]=$data['id'];
     $_SESSION["pseudo"]=$pseudo;
     include('form_menu.php');
@@ -57,22 +57,15 @@ if ($a==0){//si il n'y a aucun problème, renvoie au menu
 
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Erreur</title>
     <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
 </head>
 
 <body>
-<?php if($a!=0){ //redirection vers des pages différentes en fonction des tests effectués ci-dessus ?>
 <form method="post" action="page_accueil.php";>
-    <?php }else{ ?>
-    <form method="post" action="form_menu.php">
-        <?php }?>
-
         <div class="jeu">
-
             <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
-            <?php if($a!=0){echo'OOUPS !';
-            } ?>
+            <?php echo'OOUPS !'; ?>
             <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
         </div>
         <div class="animation1">
@@ -108,4 +101,4 @@ if ($a==0){//si il n'y a aucun problème, renvoie au menu
     </form>
 </body>
 </html>
-<?php }
+<?php } ?>

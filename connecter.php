@@ -18,7 +18,7 @@ if(empty($data)){
 
     <html lang="fr">
     <head>
-        <title>Critique_jeux_plateau</title>
+        <title>Erreur</title>
         <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
     </head>
     <body>

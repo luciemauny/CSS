@@ -17,7 +17,7 @@ $req->execute([$nom, $edition, $type_jeu]);
 
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Recherche jeu</title>
     <link rel="stylesheet" type="text/css" href="tableaux.css" media="all"/>
 </head>
 <body>

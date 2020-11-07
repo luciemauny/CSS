@@ -53,7 +53,7 @@ if(empty($_POST["supprimer"])){
 
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Amis</title>
     <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
 </head>
 <body>

@@ -28,7 +28,7 @@ $req->execute([$note,$data['id_jeu'],$data_utilisateur['id']]);
 
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Ajout critique</title>
     <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
 </head>
 <body>

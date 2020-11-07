@@ -25,7 +25,7 @@ $data = $req->fetch();
 echo'
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Caractéristiques jeu</title>
     <link rel="stylesheet" type="text/css" href="tableaux.css" media="all"/>
 </head>
 <body>

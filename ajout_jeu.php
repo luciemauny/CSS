@@ -56,7 +56,7 @@ if(empty($data_existe)){$a=1;
 
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Ajout jeu</title>
     <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
 </head>
 <body>

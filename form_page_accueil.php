@@ -6,7 +6,7 @@ session_destroy();
 
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Accueil</title>
     <link rel="stylesheet" type="text/css" href="page_accueil.css" media="all"/>
 </head>
 <h1>

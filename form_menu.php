@@ -1,6 +1,6 @@
 <html lang="fr">
 <head>
-    <title>Critique_jeux_plateau</title>
+    <title>Menu</title>
     <link rel="stylesheet" type="text/css" href="menu_utilisateur.css" media="all"/>
 </head>
 </br>
