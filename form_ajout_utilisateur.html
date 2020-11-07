@@ -3,8 +3,13 @@
     <title>Critique_jeux_plateau</title>
     <link rel="stylesheet" type="text/css" href="formulaire.css" media="all"/>
 </head>
+<style>
+    input[type=submit]:hover {
+        background-color: rgb(255, 0, 0);
+    }
+</style>
 <body>
-<div class="jeu">
+<div class="jeu" style="text-decoration: underline rgb(255, 0, 0)">
 
     <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
     Inscription
@@ -15,7 +20,7 @@
 <div class="transbox">
 
     <form method="post" action="ajout_utilisateur.php">
-        <p></br>
+        </br>
             <img src="https://img.icons8.com/windows/32/000000/add-user-male--v1.png"/>   </br></br>
             <label>
                 Nom :</br> <input type="texte" name="nom"/>
@@ -57,7 +62,7 @@
                 <option value="4">parcours</option>
             </select></br></br>
             Cliquez ici pour finaliser votre inscription: </br><input type="submit" name="submit">
-        </p>
+
     </form>
 </div>
 </body>
