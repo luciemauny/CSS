@@ -17,9 +17,16 @@ $req->execute([$data_type_jeu['id_type_jeu']]);
     <title>Critique_jeux_plateau</title>
     <link rel="stylesheet" type="text/css" href="tableaux.css" media="all"/>
 </head>
-
+<style>
+    input[type=submit]:hover {
+        background-color: rgba(0, 182, 0, 1);
+    }
+    button:hover{
+        background-color: rgba(0, 182, 0, 1);
+    }
+</style>
 <body>
-<div class="jeu">
+<div class="jeu" style="text-decoration: underline rgba(0, 182, 0, 1)">
     <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
     Découvrir des jeux
     <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
@@ -96,10 +103,10 @@ $req->execute([$data_type_jeu['id_type_jeu']]);
 
     </form>
 </table>
-    <form method="post" action="page_accueil.php"
+<form method="post" action="page_accueil.php">
 </br></br><box>Cliquez ici pour revenir au menu ! </box></br></br>
-        <input type="submit" name="menu" value="MENU">
-    </form>
+<input type="submit" name="menu" value="MENU">
+</form>
 
 </body>
 </html>
