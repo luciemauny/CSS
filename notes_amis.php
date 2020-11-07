@@ -25,13 +25,14 @@
     <?php
     session_start();
 
-
+    //Cette requête sélectionne toutes les notes attribuées par les amis de l'utilisateur. Les données sont affichées dans un tableau
+    
     $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
     $req = $bdd->prepare("SELECT utilisateur.pseudo,note.note,jeu.nom_jeu FROM utilisateur 
 INNER JOIN amis ON utilisateur.id=amis.id_amis INNER JOIN note ON note.id_utilisateur=amis.id_amis 
 INNER JOIN jeu ON note.id_jeu=jeu.id_jeu WHERE amis.id_utilisateur=?");
     $req->execute([$_SESSION['id']]);
-    $i=0;
+    $i=0;//Augmente de un a chaque nouvel entré dans la boucle while. Sa parité détermine le fond de la ligne du tableau.
     while ($data = $req->fetch()) {
         if ($i % 2 == 0) {
             echo '<tr style="background-color: #cccccc">';
