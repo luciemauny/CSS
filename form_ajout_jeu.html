@@ -3,45 +3,57 @@
     <title>Critique_jeux_plateau</title>
     <link rel="stylesheet" type="text/css" href="formulaire.css" media="all"/>
 </head>
+<style>
+    input[type=submit]:hover {
+        background-color: rgba(0, 187, 254, 1);
+    }
+</style>
 <body>
-<div class="jeu">
+<div class="jeu" style="text-decoration: underline rgba(0, 187, 254, 1)">
 
     <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
     Ajout jeu
-   <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
+    <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
 </div>
 <div class="animation1">
 </div>
 
 <div class="transbox">
-<form method="post" action="ajout_jeu.php">
-    <p></br></br>
-        <img style="margin-top: 30px" src="https://img.icons8.com/android/24/000000/plus.png"/></br></br></br>
-    <label>
-        Nom : </br><input type="texte" name="nom"/>
-    </label>
-    </br></br>
-    <label>
-        Prix :</br> <input type="number" name="prix"/>
-    </label>
-    </br></br>
-    <label>
-        Edition :</br> <input type="texte" name="edition"/>
-    </label>
-    </br></br>
-    <label for="type_jeu">Veuillez choisir le type de jeu auquel il appartient :</label></br>
-    <select id="type_jeu" name="type_jeu">
-        <option value="1">stratégie</option>
-        <option value="2">hasard</option>
-        <option value="3">mémoire</option>
-        <option value="4">parcours</option>
-    </select></br></br>
-        <label>
-            Descriptif :</br> <textarea name="bio" cols="20" rows="10"></textarea>
-        </label></br></br>
-    </br> <input type="submit" name="submit" value="Enregistrer">
-    </p>
-</form>
+    <form method="post" action="ajout_jeu.php">
+        </br></br>
+            <img style="margin-top: 30px" src="https://img.icons8.com/android/24/000000/plus.png"/></br></br></br>
+            <label>
+                Nom : </br><input type="texte" name="nom"/>
+            </label>
+            </br></br>
+            <label>
+                Prix :</br> <input type="number" name="prix"/>
+            </label>
+            </br></br>
+            <label>
+                Edition :</br> <input type="texte" name="edition"/>
+            </label>
+            </br></br>
+            <label for="type_jeu">Veuillez choisir le type de jeu auquel il appartient :</label></br>
+            <select id="type_jeu" name="type_jeu">
+                <option value="1">stratégie</option>
+                <option value="2">hasard</option>
+                <option value="3">mémoire</option>
+                <option value="4">parcours</option>
+            </select></br></br>
+            <label>
+                Descriptif :</br> <textarea name="bio" cols="20" rows="10"></textarea>
+            </label></br></br>
+            </br> <input type="submit" name="submit" value="Enregistrer">
+
+    </form>
+    <form method="post" action="page_accueil.php">
+
+        </br></br>
+        <input type="submit" name="menu" value="MENU">
+
+    </form>
+
 </div>
 
 </body>
