@@ -6,9 +6,9 @@ $t=0;
 
 if(empty($_POST["supprimer"])){
 
-$pseudo=$_POST["pseudo"];
+    $pseudo=$_POST["pseudo"];
 
-$bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
+    $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8", "root", "");
 
     //récupération id et pseudo de l'utilisateur recherché
     $req = $bdd->prepare("SELECT id, pseudo FROM utilisateur WHERE pseudo=? ");
@@ -48,57 +48,57 @@ $bdd = new PDO("mysql:host=localhost;dbname=critique_jeux_plateau;charset=utf8",
     $req->execute([$_SESSION['id'], $id_amis]);
 
 }
-    ?>
+?>
 
 
-            <html lang="fr">
-            <head>
-                <title>Critique_jeux_plateau</title>
-                <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
-            </head>
-            <body>
-            <div class="jeu">
+<html lang="fr">
+<head>
+    <title>Critique_jeux_plateau</title>
+    <link rel="stylesheet" type="text/css" href="confirmation.css" media="all"/>
+</head>
+<body>
+<div class="jeu">
 
-                <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
-                <?php if($t==2) {echo'BRAVO !';}else{echo'OOUPS !';} ?>
-                <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
-            </div>
-            <div class="animation1">
+    <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
+    <?php if($t==2) {echo'BRAVO !';}else{echo'OOUPS !';} ?>
+    <sub><img src="https://img.icons8.com/windows/96/000000/queen.png" width="40" height="40"/></sub>
+</div>
+<div class="animation1">
 
-            </div>
-            </br>
-            <div class="texte">
+</div>
+</br>
+<div class="texte">
 
-                <?php switch($t){
-                    case 1 :
-                        echo "Cet utilisateur n'existe pas ! ";
-                        break;
-                    case 2 :
-                        echo $data["pseudo"];
-                        echo ' est maintenant votre ami ! ';
-                        break;
-                    case 3 :
-                        echo 'Cet utilisateur est déjà votre ami ! ';
-                        break;
-                    case 0 :
-                        echo 'Vous venez de supprimer un de vos ami ! ';
+    <?php switch($t){
+        case 1 :
+            echo "Cet utilisateur n'existe pas ! ";
+            break;
+        case 2 :
+            echo $data["pseudo"];
+            echo ' est maintenant votre ami ! ';
+            break;
+        case 3 :
+            echo 'Cet utilisateur est déjà votre ami ! ';
+            break;
+        case 0 :
+            echo 'Vous venez de supprimer un de vos ami ! ';
 
-                } ?>
-                Cliquez ici pour revenir au menu :
-            </div>
+    } ?>
+    Cliquez ici pour revenir au menu :
+</div>
 
-            </br> </br>
-            <div class="animation2"></div>
-            <div class="animation4"></div>
-            <div class="animation3"></div>
+</br> </br>
+<div class="animation2"></div>
+<div class="animation4"></div>
+<div class="animation3"></div>
 
-            <div class="box">
-                <form method="post" action="page_accueil.php">
-                <label>
-                    <p><input type="submit" name="menu" value="menu"></p>
-                </label>
-            </div>
+<div class="box">
+    <form method="post" action="page_accueil.php">
+        <label>
+            <p><input type="submit" name="menu" value="menu"></p>
+        </label>
+</div>
 
-            </form>
-            </body>
-            </html>
+</form>
+</body>
+</html>
