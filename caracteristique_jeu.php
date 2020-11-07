@@ -52,7 +52,7 @@ $req->execute([$_SESSION['nom_jeu']]);
 ?>
 <span>
 
-    <table class="table1" cellspacing="3">
+    <table class="table1" cellspacing="0">
     <tr style="font-weight: bold">
     <td>Pseudo</td>
         <td>Critique</td>
@@ -154,7 +154,7 @@ while ($data2 = $req->fetch()){
 
 if(empty( $_SESSION['pseudo'])){
     ?>
-    <div class="transbox">
+    <div class="transbox" style="margin-top: -300px">
     <form method="post" action="page_accueil.php">
     </br></br>Pour ajouter des critiques ou une note vous devez vous identifier ou bien vous inscrire !</br></br>
         </br></br>
