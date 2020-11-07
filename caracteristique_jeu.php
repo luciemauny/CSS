@@ -60,7 +60,7 @@ $req->execute([$_SESSION['nom_jeu']]);
         <td>Pas intéressant</td>
         <td>Note</td>
         <?php if(!empty( $_SESSION['pseudo'])){ ?>
-        <td>Votre avis</td>
+            <td>Votre avis</td>
         <?php } ?>
         </tr>
 
@@ -69,65 +69,65 @@ $req->execute([$_SESSION['nom_jeu']]);
 $j=0; //variable permettant d'afficher les lignes du tableau de couleurs différentes
 
 while ($data2 = $req->fetch()){
-if ($j%2==0) {
+    if ($j%2==0) {
 
-    //affichage sur bande grise si j pair
+        //affichage sur bande grise si j pair
         echo'<tr style="background-color: #cccccc">';
-            }else{
-    //affichage sur image de fond si j impair
+    }else{
+        //affichage sur image de fond si j impair
         echo'<tr>';}
-        echo'<td>';
-        echo $data2["pseudo"];
-        echo '</td>';
-        echo '<td>';
-        echo $data2["bio"];
-        echo '</td>';
+    echo'<td>';
+    echo $data2["pseudo"];
+    echo '</td>';
+    echo '<td>';
+    echo $data2["bio"];
+    echo '</td>';
 
-        //compte le nombre d'avis intéressants
-        $requete = $bdd->prepare("SELECT COUNT(note_critique) FROM note_critique WHERE id_critique=? AND note_critique=1");
-        $requete->execute([$data2["id_critique"]]);
-        $avis_critique = $requete->fetch();
-        echo '<td>';
-        //affiche le nombre d'avis intéressants
-        echo $avis_critique["COUNT(note_critique)"];
+    //compte le nombre d'avis intéressants
+    $requete = $bdd->prepare("SELECT COUNT(note_critique) FROM note_critique WHERE id_critique=? AND note_critique=1");
+    $requete->execute([$data2["id_critique"]]);
+    $avis_critique = $requete->fetch();
+    echo '<td>';
+    //affiche le nombre d'avis intéressants
+    echo $avis_critique["COUNT(note_critique)"];
 
-        echo ' </td> ';
+    echo ' </td> ';
 
-        //compte le nombre d'avis pas intéressants
-        $requete = $bdd->prepare("SELECT COUNT(note_critique) FROM note_critique WHERE id_critique=? AND note_critique=0");
-        $requete->execute([$data2["id_critique"]]);
-        $avis_critique = $requete->fetch();
-        echo '<td> ';
-        //affiche le nombre d'avis pas intéressants
-        echo $avis_critique["COUNT(note_critique)"];
-        echo '</td>';
+    //compte le nombre d'avis pas intéressants
+    $requete = $bdd->prepare("SELECT COUNT(note_critique) FROM note_critique WHERE id_critique=? AND note_critique=0");
+    $requete->execute([$data2["id_critique"]]);
+    $avis_critique = $requete->fetch();
+    echo '<td> ';
+    //affiche le nombre d'avis pas intéressants
+    echo $avis_critique["COUNT(note_critique)"];
+    echo '</td>';
 
-        //récupère note mise par l'utilisateur qui a émis la critique
-        $requete = $bdd->prepare("SELECT note.note FROM note INNER JOIN utilisateur ON note.id_utilisateur=utilisateur.id
+    //récupère note mise par l'utilisateur qui a émis la critique
+    $requete = $bdd->prepare("SELECT note.note FROM note INNER JOIN utilisateur ON note.id_utilisateur=utilisateur.id
                 INNER JOIN jeu ON note.id_jeu=jeu.id_jeu WHERE utilisateur.pseudo=? AND jeu.nom_jeu=?");
-        $requete->execute([$data2["pseudo"], $_SESSION['nom_jeu']]);
-        $note_utilisateur = $requete->fetch();
+    $requete->execute([$data2["pseudo"], $_SESSION['nom_jeu']]);
+    $note_utilisateur = $requete->fetch();
 
-        if (empty($note_utilisateur["note"])) {
-            echo ' <td>  / </td>';
-        } else {
-            echo '<td>';
-            echo $note_utilisateur["note"];
-            echo '</td>';
-        }
+    if (empty($note_utilisateur["note"])) {
+        echo ' <td>  / </td>';
+    } else {
+        echo '<td>';
+        echo $note_utilisateur["note"];
+        echo '</td>';
+    }
 
-        if (!empty($_SESSION['pseudo'])) {
+    if (!empty($_SESSION['pseudo'])) {
 
-            //teste si utilisateur a déjà donné son avis sur la critique
-            $requ = $bdd->prepare("SELECT id_note_critique FROM note_critique WHERE id_utilisateur=? AND id_critique=?");
-            $requ->execute([$_SESSION['id'], $data2["id_critique"]]);
-            $note = $requ->fetch();
+        //teste si utilisateur a déjà donné son avis sur la critique
+        $requ = $bdd->prepare("SELECT id_note_critique FROM note_critique WHERE id_utilisateur=? AND id_critique=?");
+        $requ->execute([$_SESSION['id'], $data2["id_critique"]]);
+        $note = $requ->fetch();
 
-            if (empty($note["id_note_critique"])) {
+        if (empty($note["id_note_critique"])) {
 
 
-                ?>
-                <td><form method="post" action="ajout_avis_critique.php">
+            ?>
+            <td><form method="post" action="ajout_avis_critique.php">
                         <label>
                             <input type="radio" name="avis_critique" value="1">
                             intéressant
@@ -140,37 +140,37 @@ if ($j%2==0) {
                         <input type="hidden" name="id_critique" value="<?php echo $data2["id_critique"] ?> ">
                         <input type="submit" class="avis" name="avis" value="donner son avis">
                     </form></td> <?php
-            } else {
-                echo "<td>Vous avez déjà </br>noté cette critique</td>";
-            }
+        } else {
+            echo "<td>Vous avez déjà </br>noté cette critique</td>";
         }
+    }
     echo'</tr>';
     $j++;
 }
-echo'</table></span>';
+?> </table></span> <?php
 
 
 //affichage box se connecter/s'inscrire si utilisateur non connecté
 
 if(empty( $_SESSION['pseudo'])){
-?>
+    ?>
     <div class="transbox">
     <form method="post" action="page_accueil.php">
     </br></br>Pour ajouter des critiques ou une note vous devez vous identifier ou bien vous inscrire !</br></br>
-    </br></br>
+        </br></br>
         <input style="background-color: rgb(0, 201, 0)" class="critique" type="submit" name="connecter" value="Se connecter">
-    </br></br></br>
+        </br></br></br>
         <input style="background-color: rgb(255, 0, 0)" class="critique" type="submit" name="inscription" value="Inscription">
     </form>
     </div>
-<?php
+    <?php
 
 }else {
 
 //affichage box note+critique si utilisateur connecté
     ?>
 
-<span>
+    <span>
     <div class="transbox">
         <form method="post" action="ajout_critique.php"></br></br>
                 <?php
@@ -188,22 +188,22 @@ if(empty( $_SESSION['pseudo'])){
                 $n=$req->fetch();
 
                 if(empty($c)){
-                ?>
-            <label>
+                    ?>
+                    <label>
                 Ajouter une critique :</br></br> <textarea name="bio" cols="30" rows="10"></textarea>
             </label>
-            <?php }else{ echo 'Vous avez déjà ajouté une critique pour ce jeu<br/>';} ?>
+                <?php }else{ echo 'Vous avez déjà ajouté une critique pour ce jeu<br/>';} ?>
             </br></br>
 
             <?php if(empty($n)){ ?>
-            <label>
+                <label>
                 Ajouter une note : </br></br><input type="number" id="note" name="note" min="0" max="10">
-                </br></br>
+                    </br></br>
             </label>
             <?php }else{ echo'Vous avez déjà noté ce jeu</br></br></br>';}
             if((!empty($c)) && (!empty($n))){}else{
-            ?>
-            <input class="critique" type="submit" name="ajouter" value="Ajouter">
+                ?>
+                <input class="critique" type="submit" name="ajouter" value="Ajouter">
             <?php }?>
         </form>
         Revenir au menu
@@ -211,7 +211,7 @@ if(empty( $_SESSION['pseudo'])){
             <input style="background-color: black" class="critique" type="submit" name="menu" value="MENU">
         </form>
     </div></span>';
-<?php
+    <?php
 }
 ?>
 </html>
