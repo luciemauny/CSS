@@ -12,13 +12,6 @@ WHERE jeu.nom_jeu LIKE CONCAT('%', ?, '%') OR edition.nom_edition LIKE CONCAT('%
 ORDER BY jeu.nom_jeu");
 $req->execute([$nom, $edition, $type_jeu]);
 
-/*
-$req = $bdd->prepare("SELECT jeu.nom_jeu, edition.nom_edition, type_jeu.nom_type_jeu, jeu.prix FROM jeu INNER JOIN edition
-ON jeu.id_edition=edition.id_edition INNER JOIN type_jeu ON type_jeu.id_type_jeu=jeu.id_jeu_type_jeu
-WHERE jeu.nom_jeu=? OR edition.nom_edition=? OR type_jeu.id_type_jeu=? ORDER BY jeu.nom_jeu, type_jeu.nom_type_jeu, edition.id_edition");
-$req->execute([$nom, $edition, $type_jeu]);
-*/
-
 ?>
 
 <html lang="fr">
